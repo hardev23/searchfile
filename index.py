@@ -15,8 +15,9 @@ bot = commands.Bot(command_prefix="!", intents=intents)
 
 @bot.event
 async def on_ready():
-    """Indica que el bot está en línea."""
-    print(f'Conectado como {bot.user}')
+    print(f"Conectado como {bot.user}")
+    print(f"ID del bot: {bot.user.id}")
+
 
 @bot.command()
 async def buscar(ctx, *, query):
@@ -57,10 +58,13 @@ def run_flask():
 # Iniciar el bot y Flask
 def run_bot():
     token = os.getenv("DISCORD_TOKEN")
-    if token is None:
-        print("Error: No se encontró el token de Discord en las variables de entorno.")
-        return
+    if not token:  # Verificar si el token está definido
+        print("Error: DISCORD_TOKEN no está definido.")
+        exit(1)  # Terminar el programa
     bot.run(token)
+
+
+    
 
 if __name__ == "__main__":
     # Crear un hilo para ejecutar Flask
