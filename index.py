@@ -51,3 +51,4 @@ else:
 # Aquí Vercel requiere que devolvamos algo, así que utilizamos un endpoint vacío.
 def handler(request):
     return "Bot funcionando..."
+
